@@ -1,0 +1,22 @@
+.profileActions {
+    margin-top: 20px;
+}
+
+.editButton, .deleteButton {
+    font-size: 30px;
+    font-family: 'Jura';
+
+    width: 200px;
+    height: 50px;
+
+    border: 1px solid black;
+}
+
+.editButton {
+    background-color: #DEFF7F;
+    margin-right: 20px;
+}
+
+.deleteButton {
+    background-color: #FFAD72;
+}

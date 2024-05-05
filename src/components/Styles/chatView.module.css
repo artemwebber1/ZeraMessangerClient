@@ -1,0 +1,22 @@
+.chatView {
+    border: 1px solid black;
+
+    margin: 0 auto;
+    margin-bottom: 4px;
+
+    background-color: #C6FFFC;
+    width: 710px;
+    height: 57px;
+}
+
+.chatName {
+    font-size: 30px;
+
+    margin: 0;
+    padding-left: 48px;
+}
+
+.membersCount {
+    margin: 0;
+    padding-left: 48px;
+}
