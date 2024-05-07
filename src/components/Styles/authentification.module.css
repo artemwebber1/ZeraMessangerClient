@@ -1,0 +1,52 @@
+
+.authentificationForm {
+    margin-left: 60px;
+    padding-top: 50px;
+}
+
+.errorMessage {
+    color: #C72525;
+    text-align: center;
+    font-size: 40px;
+    padding-top: 10px;
+}
+
+.label {
+    font-size: 40px;
+}
+
+.input {
+    height: 30px;
+    width: 710px;
+
+    font-size: 30px;
+
+    background-color: #F8FFCD;
+
+    margin-bottom: 20px;
+}
+
+.submitButtonWrapper {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.submitButton {
+    text-align: center;
+    font-size: 30px;
+
+    background-color: #C1FF8F;
+
+    width: 40vw;
+    height: 40px;
+}
+
+.submitButton:active {
+    background-color: #99cd70;
+}
+
+.registrationLink {
+    text-align: center;
+    font-size: 30px;
+    margin-top: 30px;
+}

@@ -12,10 +12,14 @@ body {
 
 .main {
     background-color: #A3E998;
-    padding-bottom: 80%;
+    padding-bottom: 90%;
 }
 
-p {
-    margin: 0;
+button {
     font-family: 'Jura';
+    border: 1px solid black;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
 }

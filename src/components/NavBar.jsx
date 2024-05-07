@@ -13,7 +13,7 @@ export const NavBar = () => {
                         Chats
                     </NavLink>
 
-                    <NavLink to="/me" className={navLink}>
+                    <NavLink to="/profile" className={navLink}>
                         Profile
                     </NavLink>
                 </div>

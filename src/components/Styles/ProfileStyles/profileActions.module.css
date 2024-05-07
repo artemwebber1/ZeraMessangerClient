@@ -2,21 +2,23 @@
     margin-top: 20px;
 }
 
-.editButton, .deleteButton {
+.editButton, .deleteButton, .exitButton {
     font-size: 30px;
-    font-family: 'Jura';
 
     width: 200px;
     height: 50px;
 
-    border: 1px solid black;
+    margin-right: 20px;
 }
 
 .editButton {
     background-color: #DEFF7F;
-    margin-right: 20px;
 }
 
 .deleteButton {
     background-color: #FFAD72;
+}
+
+.exitButton {
+    background-color: rgb(255, 68, 39);
 }
