@@ -22,10 +22,7 @@ export const ChatsView = () => {
             });
     }
 
-    useEffect(() => {
-        loadChats();
-        console.log("loaded");
-    }, []);
+    useEffect(loadChats, []);
 
     return (
         <div className={styles.chatsView}>

@@ -1,9 +1,13 @@
-import styles from '../../../Styles/ProfileStyles/profileActions.module.css'
+import { useNavigate } from 'react-router-dom';
+import styles from '../../Styles/ProfileStyles/profileActions.module.css'
+
 
 export const ProfileActions = () => {
-    
+    const redirect = useNavigate()
+
     const logout = () => {
         localStorage.removeItem("jwt");
+        redirect("/login");
         window.location.reload();
     };
 
