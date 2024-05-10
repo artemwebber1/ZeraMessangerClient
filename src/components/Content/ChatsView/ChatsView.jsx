@@ -1,7 +1,9 @@
 import styles from '../../Styles/chatsView.module.css';
+import { NavBar } from '../../NavBar';
 import { ChatView } from './ChatView';
 import { useEffect, useState } from 'react';
 import { CreateChatButton } from './CreateChatButton';
+import { NavLink } from 'react-router-dom';
 
 export const ChatsView = () => {
     const [chats, setChats] = useState([]);
@@ -25,9 +27,19 @@ export const ChatsView = () => {
     useEffect(loadChats, []);
 
     return (
-        <div className={styles.chatsView}>
-            <CreateChatButton />
-            {chats.map(chat => <ChatView chatName={chat.chatName} membersCount={chat.membersCount}/>)}
-        </div>
+        <>
+            <div className={styles.chatsView}>
+                <CreateChatButton />
+                {chats.map(chat => {
+                    const chatPath = "/chats/" + chat.chatId;
+                    return (
+                        <NavLink to={chatPath} key={chat.chatId}>
+                            <ChatView chatName={chat.chatName} membersCount={chat.membersCount}/>
+                        </NavLink>
+                    )
+                })}
+            </div>
+            <NavBar />
+        </>
     );
 };

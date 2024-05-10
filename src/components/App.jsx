@@ -2,7 +2,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 // Components import
 import { Header } from './Header';
-import { Authentificated } from './Authentificated';
+import { Content } from './Content/Content';
 import { Authentification } from './Authentification/Authentification'
 
 
@@ -17,7 +17,7 @@ const App = () => {
                 <div className="main">
                     {/* Если пользователь аутентифицирован, показываем ему контент для аутентифицированных пользователей. 
                         Если нет - окно для аутентификации. */}
-                    { isAuthentificated ? <Authentificated /> : <Authentification />}
+                    { isAuthentificated ? <Content /> : <Authentification />}
                 </div>
             </BrowserRouter>
         </div>

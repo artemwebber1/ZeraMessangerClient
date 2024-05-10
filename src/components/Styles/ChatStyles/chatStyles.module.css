@@ -1,0 +1,41 @@
+.chatName {
+    text-align: center;
+    width: auto;
+
+    padding-top: 11px;
+    padding-bottom: 11px;
+
+    background-color: #64E662;
+
+    font-size: 40px;
+}
+
+/* Message styles */
+.message, .myMessage {
+    margin: 0 auto;
+    margin-top: 40px;
+
+    width: 700px;
+    background-color: #B3FFDB;
+    text-wrap: wrap;
+
+
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.myMessage {
+    background-color: #6FFFBA;
+}
+
+.messageText {
+    font-size: 30px;
+
+    padding-left: 10px;
+}
+
+.messagesAuthorName {
+    text-align: right;
+    padding-bottom: 5px;
+    padding-right: 20px;
+}

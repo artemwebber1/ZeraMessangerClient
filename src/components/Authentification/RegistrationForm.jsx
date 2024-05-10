@@ -60,9 +60,7 @@ export const RegistrationForm = (props) => {
                 props.onChange();
             }}/>
 
-            <label htmlFor='passwordInput' className={styles.label}>Password</label>
-            <br />
-            <input id='passwordInput' type="text" className={styles.input} onChange={e => {
+            <Input className="passwordInput" id="passwordInput" label="Password" onChange={e => {
                 setUserPassword(e.target.value);
                 props.onChange();
             }}/>
@@ -80,6 +78,12 @@ export const RegistrationForm = (props) => {
     );
 }
 
-const Input = () => {
-
+const Input = (props) => {
+    return (
+        <div className={props.className}>
+            <label htmlFor={props.id} className={styles.label}>{props.label}</label>
+            <br />
+            <input id={props.id} type="text" className={styles.input} onChange={props.onChange}/>
+        </div>
+    );
 }

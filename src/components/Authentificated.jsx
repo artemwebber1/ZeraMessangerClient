@@ -6,7 +6,6 @@ export const Authentificated = () => {
     return (
         <>
             <Content />
-            <NavBar />
         </>
     );
 };

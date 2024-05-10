@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import styles from '../Styles/authentification.module.css'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { LoginForm } from './LoginForm';
 import { RegistrationForm } from './RegistrationForm';
 

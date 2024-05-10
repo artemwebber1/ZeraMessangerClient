@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ProfileActions } from "./ProfileActions";
 import { UserInfo } from "./UserInfo";
+import { NavBar } from "../../NavBar";
 
 
 export const Profile = () => {
@@ -34,9 +35,12 @@ export const Profile = () => {
     useEffect(requestProfileData, []);
 
     return (
-        <div className="profile" style={profileStyles}>
-            <UserInfo userName={userName} userEmail={userEmail} userId={userId}/>
-            <ProfileActions />
-        </div>
+        <>
+            <div className="profile" style={profileStyles}>
+                <UserInfo userName={userName} userEmail={userEmail} userId={userId}/>
+                <ProfileActions />
+            </div>
+            <NavBar />
+        </>
     );
 };
