@@ -4,7 +4,7 @@ export const Header = () => {
     return (
         <div className="header">
             <h1 className={styles.title}>
-                Softwork
+                Zera
             </h1>
         </div>
     );

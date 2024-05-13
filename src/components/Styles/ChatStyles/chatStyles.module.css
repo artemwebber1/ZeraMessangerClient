@@ -1,6 +1,17 @@
-.chatName {
-    text-align: center;
+.chat {
     width: auto;
+}
+
+.chatHeader {
+    text-align: center;
+
+    position: fixed;
+    height: 30px;
+    width: 850px;
+    top: 60px;
+
+    display: flex;
+    justify-content: space-around;
 
     padding-top: 11px;
     padding-bottom: 11px;
@@ -8,6 +19,11 @@
     background-color: #64E662;
 
     font-size: 40px;
+}
+
+.chatName {
+    text-align: center;
+    line-height: 30px;
 }
 
 /* Message styles */
@@ -38,4 +54,41 @@
     text-align: right;
     padding-bottom: 5px;
     padding-right: 20px;
+}
+
+/* Add message input styles */
+
+.addMessageField {
+    position: fixed;
+	bottom: 0px;
+
+    display: flex;
+    justify-content: space-around;
+}
+
+.messageInput {
+    height: 40px;
+    width: 720px;
+
+    resize: none;
+
+    background-color: #D2FFC2;
+}
+
+.messageInput::placeholder {
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+}
+
+.sendButton {
+    margin-left: 10px;
+    width: 115px;
+
+    font-size: 20px;
+    background-color: #7CF6D2;
+}
+
+.sendButton:active {
+    background-color: #6EDFBD;
 }

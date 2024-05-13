@@ -10,7 +10,7 @@ export const Content = () => {
             <Route path='/' element={<Navigate to="/chats" />} />
             <Route path="/chats" element={<ChatsView />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/chats/:id" element={<Chat />} />
+            <Route path="/chats/:chatId" element={<Chat />} />
         </Routes>
     );
 };

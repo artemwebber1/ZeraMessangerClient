@@ -30,10 +30,10 @@ export const ChatsView = () => {
         <>
             <div className={styles.chatsView}>
                 <CreateChatButton />
-                {chats.map(chat => {
+                {chats.map((chat, index) => {
                     const chatPath = "/chats/" + chat.chatId;
                     return (
-                        <NavLink to={chatPath} key={chat.chatId}>
+                        <NavLink to={chatPath} key={index}>
                             <ChatView chatName={chat.chatName} membersCount={chat.membersCount}/>
                         </NavLink>
                     )
