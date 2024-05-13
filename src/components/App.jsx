@@ -1,18 +1,24 @@
 import { BrowserRouter } from 'react-router-dom';
 
 // Components import
-import { Content } from './Content/Content';
 import { Header } from './Header';
-import { NavBar } from './NavBar';
+import { Content } from './Content/Content';
+import { Authentification } from './Authentification/Authentification'
 
 
 const App = () => {
+    // Проверка, аутентифицирован ли пользователь
+    let isAuthentificated = localStorage.getItem("jwt") != null;
+
     return (
         <div className="app">
             <BrowserRouter>
                 <Header />
-                <Content />
-                <NavBar />
+                <div className="main">
+                    {/* Если пользователь аутентифицирован, показываем ему контент для аутентифицированных пользователей. 
+                        Если нет - окно для аутентификации. */}
+                    { isAuthentificated ? <Content /> : <Authentification />}
+                </div>
             </BrowserRouter>
         </div>
     );

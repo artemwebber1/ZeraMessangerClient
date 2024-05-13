@@ -1,15 +1,16 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { ChatsView } from "./ChatsView/ChatsView"
-import { Profile } from './Profile/Profile';
+import { Profile } from './ProfileContent/Profile';
+import { Chat } from './Chat/Chat';
 
 
 export const Content = () => {
     return (
-        <div className="main">
-            <Routes>
-                <Route path="/chats" element={<ChatsView />} />
-                <Route path="/me" element={<Profile />}/>
-            </Routes>
-        </div>
-    )
-}
+        <Routes>
+            <Route path='/' element={<Navigate to="/chats" />} />
+            <Route path="/chats" element={<ChatsView />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/chats/:chatId" element={<Chat />} />
+        </Routes>
+    );
+};

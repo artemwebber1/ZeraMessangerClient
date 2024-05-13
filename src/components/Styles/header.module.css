@@ -1,4 +1,7 @@
 .title {
+    position: fixed;
+    width: 850px;
+
     background-color: #B1FFBD;
     text-align: center;
 

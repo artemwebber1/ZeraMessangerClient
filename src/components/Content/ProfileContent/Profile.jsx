@@ -1,19 +1,25 @@
 import { useEffect, useState } from "react";
 import { ProfileActions } from "./ProfileActions";
 import { UserInfo } from "./UserInfo";
+import { NavBar } from "../../NavBar";
 
 
 export const Profile = () => {
+    const profileStyles = {
+        marginLeft: "100px",
+        paddingTop: "30px"
+    };
+
     const [userName, setUserName] = useState("");
     const [userEmail, setUserEmail] = useState("");
     const [userId, setUserId] = useState("");
 
-    const requestProfileData = (authToken) => {
+    const requestProfileData = () => {
         const fetchOptions = 
         {
             method: "GET",
             headers: {
-                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIyMDAzIiwiVXNlckVtYWlsIjoiY2hla2hvbmluLmFydGVtQGdtYWlsLmNvbSJ9.6BRn6G--CNJOV_oKoT3YTuRD_vh8j3Lc0zrwFCdlSUQ"
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
             }
         }
 
@@ -26,12 +32,15 @@ export const Profile = () => {
         });
     };
 
-    useEffect(requestProfileData);
+    useEffect(requestProfileData, []);
 
     return (
-        <div className="profile" style={{marginLeft: "40px"}}>
-            <UserInfo userName={userName} userEmail={userEmail} userId={userId}/>
-            <ProfileActions />
-        </div>
+        <>
+            <div className="profile" style={profileStyles}>
+                <UserInfo userName={userName} userEmail={userEmail} userId={userId}/>
+                <ProfileActions />
+            </div>
+            <NavBar />
+        </>
     );
 };
