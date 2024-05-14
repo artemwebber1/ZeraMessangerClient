@@ -6,7 +6,7 @@ import { InputMessageField } from './InputMessageField';
 import { HubConnectionBuilder } from '@microsoft/signalr';
 
 
-export const Chat = () => {
+export const Chat = ({setMainStyles}) => {
     const [hub, setHub] = useState(null);
 
     const {chatId} = useParams();
@@ -80,18 +80,30 @@ export const Chat = () => {
         }
 
         loadUserData();
-        if (!isConnectedToChatHub.current)
-        {
+        loadChat();
+        if (!isConnectedToChatHub.current) {
             connectToHub();
             isConnectedToChatHub.current = true;
         }
-
-        loadChat();
     }, [chatId]);
 
     useEffect(() => {
-        messagesEndRef?.current.scrollIntoView({ behavior: "smooth" });
-    }, [chatMessages]);
+        if (chatMessages.length > 5){
+            setMainStyles({
+                backgroundColor: "#A3E998",
+                paddingTop: "60px",
+                paddingBottom: "10%"
+            });
+
+            messagesEndRef?.current.scrollIntoView({ behavior: "smooth" });
+        }
+
+        return () => setMainStyles({
+            backgroundColor: "#A3E998",
+            paddingTop: "60px",
+            paddingBottom: "80%"
+        });
+    }, [chatMessages, setMainStyles]);
 
     const addMessage = async () => {
         await hub.invoke("AddMessageToChat", messageText.toString(), userId.toString(), chatId.toString());
@@ -116,7 +128,7 @@ export const Chat = () => {
                             authorName={message.authorName} />
                     </div>
                 )}
-                <div ref={messagesEndRef} style={{marginTop: "0px"}}/>
+                <div ref={messagesEndRef} />
             </div>
             <InputMessageField onChange={e => setMessageText(e.target.value)} onSend={addMessage} />
         </div>
