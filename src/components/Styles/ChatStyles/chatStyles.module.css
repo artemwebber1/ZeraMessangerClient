@@ -6,7 +6,7 @@
     text-align: center;
 
     position: fixed;
-    height: 30px;
+    height: 25px;
     width: 850px;
     top: 60px;
 
@@ -18,15 +18,19 @@
 
     background-color: #64E662;
 
-    font-size: 40px;
+    font-size: 35px;
 }
 
 .chatName {
     text-align: center;
-    line-height: 30px;
+    line-height: 25px;
 }
 
 /* Message styles */
+.messagesZone {
+    padding-top: 30px;
+}
+
 .message, .myMessage {
     margin: 0 auto;
     margin-top: 40px;

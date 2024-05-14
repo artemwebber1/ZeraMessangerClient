@@ -10,4 +10,6 @@
     margin: 0;
 
     height: 60px;
+
+    z-index: 100;
 }
