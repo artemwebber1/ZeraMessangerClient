@@ -1,26 +1,8 @@
+import styles from '../../Styles/createChatButton.module.css'
 
-
-export const CreateChatButton = () => {
-    const buttonStyles = {
-        fontFamily: 'Jura',
-        fontSize: "20px",
-        
-        backgroundColor: "#BFFFB4",
-    
-        borderRadius: "10px",
-        border: "1px solid black",
-    
-        width: "710px",
-    
-        marginBottom: "10px",
-    
-        position: "relative",
-        left: "50%",
-        transform: "translate(-50%, 0)",
-    }
-
+export const CreateChatButton = ({onClick}) => {
     return (
-        <button className="createChatButton" style={buttonStyles}>
+        <button className={styles.createChatBtn} onClick={onClick}>
             Create chat
         </button>
     );
