@@ -1,0 +1,22 @@
+
+.createChatBtn {
+    font-family: 'Jura';
+    font-size: 20px;
+        
+    background-color: #BFFFB4;
+    
+    border-radius: 10px;
+    border: 1px solid black;
+    
+    width: 710px;
+    
+    margin-bottom: 10px;
+
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.createChatBtn:active {
+    background-color: #ade5a3;
+}

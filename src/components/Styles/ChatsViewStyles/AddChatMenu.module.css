@@ -1,0 +1,47 @@
+.menuWrapper {
+    width: 710px;
+    height: 80px;
+
+    margin: 0 auto;
+    margin-bottom: 10px;
+
+    background-color: #79EEA1;
+    border: 1px solid black;
+
+    text-align: center;
+}
+
+.nameInput {
+    margin-top: 10px;
+    background-color: #E4FFAC;
+    border: 1px solid black;
+    width: 300px;
+    text-align: center;
+}
+
+.menuActions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.confirmBtn, .cancelBtn {
+    width: 100px;
+    height: 20px;
+}
+
+.cancelBtn {
+    background-color: #FFB967;
+}
+
+.cancelBtn:active {
+    background-color: #e6a65d;
+}
+
+.confirmBtn {
+    background-color: #76FF73;
+}
+
+.confirmBtn:active {
+    background-color: #64db62;
+}
