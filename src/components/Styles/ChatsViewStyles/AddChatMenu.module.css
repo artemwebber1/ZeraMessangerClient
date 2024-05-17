@@ -1,6 +1,6 @@
 .menuWrapper {
     width: 710px;
-    height: 80px;
+    height: auto;
 
     margin: 0 auto;
     margin-bottom: 10px;
@@ -9,6 +9,12 @@
     border: 1px solid black;
 
     text-align: center;
+}
+
+.errorMessage {
+    color: #C72525;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 .nameInput {
@@ -23,6 +29,7 @@
     margin-top: 10px;
     display: flex;
     justify-content: space-around;
+    padding-bottom: 10px;
 }
 
 .confirmBtn, .cancelBtn {

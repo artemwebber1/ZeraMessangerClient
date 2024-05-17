@@ -6,12 +6,10 @@ import { InputMessageField } from './InputMessageField';
 import { HubConnectionBuilder } from '@microsoft/signalr';
 
 
-export const Chat = ({setMainStyles}) => {
+export const Chat = ({user, setMainStyles}) => {
     const [hub, setHub] = useState(null);
 
     const {chatId} = useParams();
-
-    const [userId, setUserId] = useState("");
 
     const [chatName, setChatName] = useState("");
     const [chatMessages, setChatMessages] = useState([]);
@@ -29,8 +27,6 @@ export const Chat = ({setMainStyles}) => {
 
     const isConnectedToChatHub = useRef(false);
     useEffect(() => {
-        let userName = "";
-
         const loadChat = () => {
             const fetchOptions = { method: "GET" };
     
@@ -42,32 +38,16 @@ export const Chat = ({setMainStyles}) => {
             });
         };
 
-        const loadUserData = () => {
-            const fetchOptions = {
-                method: "GET",
-                headers: {
-                    "Authorization": "Bearer " + localStorage.getItem("jwt")
-                }
-            };
-    
-            fetch(`https://localhost:7185/api/users/identity`, fetchOptions)
-            .then(res => res.json())
-            .then(data => {
-                setUserId(data.userId);
-                userName = data.userName;
-            });
-        };
-
         const connectToHub = async () => {
             const hub = new HubConnectionBuilder()
                 .withUrl("https://localhost:7185/chat")
                 .withAutomaticReconnect()
                 .build();
     
-            hub.on("OnMessageSent", (messageText, authorId, chatId) => {
+            hub.on("OnMessageSent", (messageText, authorId) => {
                 const message = {
                     authorId: authorId,
-                    authorName: userName,
+                    authorName: user.userName,
                     messageText: messageText
                 };
     
@@ -79,13 +59,14 @@ export const Chat = ({setMainStyles}) => {
             await hub.invoke("AddUserToChat", chatId);
         }
 
-        loadUserData();
         loadChat();
         if (!isConnectedToChatHub.current) {
             connectToHub();
             isConnectedToChatHub.current = true;
         }
-    }, [chatId]);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
         if (chatMessages.length > 5){
@@ -106,7 +87,12 @@ export const Chat = ({setMainStyles}) => {
     }, [chatMessages, setMainStyles]);
 
     const addMessage = async () => {
-        await hub.invoke("AddMessageToChat", messageText.toString(), userId.toString(), chatId.toString());
+        // Не добавляем сообщение в чат если оно пустое
+        if (messageText === "")
+            return;
+
+        await hub.invoke("AddMessageToChat", messageText.toString(), user.userId.toString(), chatId.toString());
+        setMessageText("");
     };
 
     return (
@@ -123,14 +109,17 @@ export const Chat = ({setMainStyles}) => {
                 {chatMessages.map((message, index) => 
                     <div className="message" key={index}>
                         <Message 
-                            isMyMessage={message.authorId.toString() === userId.toString()}
+                            isMyMessage={message.authorId.toString() === user.userId.toString()}
                             text={message.messageText}
                             authorName={message.authorName} />
                     </div>
                 )}
                 <div ref={messagesEndRef} />
             </div>
-            <InputMessageField onChange={e => setMessageText(e.target.value)} onSend={addMessage} />
+            <InputMessageField 
+                onChange={e => setMessageText(e.target.value)} 
+                onSend={addMessage} 
+                messageText={messageText} />
         </div>
     );
 };

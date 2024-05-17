@@ -1,43 +1,18 @@
-import { useEffect, useState } from "react";
 import { ProfileActions } from "./ProfileActions";
 import { UserInfo } from "./UserInfo";
 import { NavBar } from "../../NavBar";
 
 
-export const Profile = () => {
+export const Profile = ({user}) => {
     const profileStyles = {
         marginLeft: "100px",
         paddingTop: "30px"
     };
 
-    const [userName, setUserName] = useState("");
-    const [userEmail, setUserEmail] = useState("");
-    const [userId, setUserId] = useState("");
-
-    const requestProfileData = () => {
-        const fetchOptions = 
-        {
-            method: "GET",
-            headers: {
-                "Authorization": "Bearer " + localStorage.getItem("jwt")
-            }
-        }
-
-        fetch("https://localhost:7185/api/users/identity", fetchOptions)
-        .then(res => res.json())
-        .then(data => {
-            setUserName(data.userName);
-            setUserEmail(data.userEmail);
-            setUserId(data.userId);
-        });
-    };
-
-    useEffect(requestProfileData, []);
-
     return (
         <>
             <div className="profile" style={profileStyles}>
-                <UserInfo userName={userName} userEmail={userEmail} userId={userId}/>
+                <UserInfo userName={user.userName} userEmail={user.userEmail} userId={user.userId}/>
                 <ProfileActions />
             </div>
             <NavBar />
