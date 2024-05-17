@@ -3,31 +3,47 @@ import { NavBar } from '../../NavBar';
 import { ChatView } from './ChatView';
 import { useEffect, useState } from 'react';
 import { CreateChatButton } from './CreateChatButton';
-import { NavLink } from 'react-router-dom';
 import { AddChatMenu } from './AddChatMenu';
 
-export const ChatsView = () => {
+export const ChatsView = ({user}) => {
     const [chats, setChats] = useState([]);
 
     const [showAddChatMenu, setShowAddChatMenu] = useState(false);
 
-    const loadChats = () => {
-        const fetchOptions = 
-        { 
-            method: "GET",
+    const exitChat = async (chatToDeleteId) => {
+        const fetchOptions = {
+            method: "DELETE",
             headers: {
-                "Authorization": "Bearer " + localStorage.getItem("jwt")
+                "Authorization": "Bearer " + localStorage.getItem("jwt"),
             }
-        }
+        };
 
-        fetch("https://localhost:7185/api/Chats/UserChats", fetchOptions)
-            .then(res => res.json())
-            .then(data => {
-                setChats(data);
-            });
+        await fetch(
+            `https://localhost:7185/api/Chats/DeleteUserFromChat?userId=${user.userId}&chatId=${chatToDeleteId}`, 
+            fetchOptions);
+
+        setChats(chats.filter(chat => chat.chatId !== chatToDeleteId));
     }
 
-    useEffect(loadChats, []);
+    useEffect(() => {
+        const loadChats = async () => {
+            const fetchOptions = 
+            { 
+                method: "GET",
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("jwt")
+                }
+            }
+    
+            await fetch("https://localhost:7185/api/Chats/UserChats", fetchOptions)
+                .then(res => res.json())
+                .then(data => {
+                    setChats(data);
+                });
+        }
+
+        loadChats();
+    }, []);
 
     const showChatAddMenu = () => {
         setShowAddChatMenu(true);
@@ -50,14 +66,17 @@ export const ChatsView = () => {
                 {showAddChatMenu 
                 ? <AddChatMenu
                     closeMenu={() => setShowAddChatMenu(false)}
-                    onConfirmed={createChat} /> : null}
+                    onConfirmed={createChat} /> 
+                : null}
 
                 {chats.map((chat, index) => {
-                    const chatPath = "/chats/" + chat.chatId;
                     return (
-                        <NavLink to={chatPath} key={index}>
-                            <ChatView chatName={chat.chatName} membersCount={chat.membersCount} />
-                        </NavLink>
+                        <ChatView 
+                            chatName={chat.chatName}
+                            membersCount={chat.membersCount} 
+                            chatId={chat.chatId}
+                            exitChat={exitChat}
+                            key={index} />
                     )
                 })}
             </div>

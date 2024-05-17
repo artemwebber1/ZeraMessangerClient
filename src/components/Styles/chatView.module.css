@@ -5,8 +5,17 @@
     margin-bottom: 4px;
 
     background-color: #C6FFFC;
-    width: 710px;
-    height: 57px;
+    width: 85%;
+    height: auto;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.chatInfo {
+    color: rgb(74, 74, 74);
+    width: 100%;
+    height: 100%;
 }
 
 .chatName {
@@ -19,4 +28,20 @@
 .membersCount {
     margin: 0;
     padding-left: 48px;
+}
+
+.exitChatBtn {
+    width: 20%;
+    height: 40px;
+
+    font-size: 20px;
+
+    margin-right: 48px;
+    margin-top: 7px;
+
+    background-color: #FFE975;
+}
+
+.exitChatBtn:active {
+    background-color: #e3ce69;
 }
