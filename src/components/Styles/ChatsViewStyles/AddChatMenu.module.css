@@ -1,5 +1,6 @@
 .menuWrapper {
-    width: 710px;
+    width: 100%;
+    max-width: 710px;
     height: auto;
 
     margin: 0 auto;

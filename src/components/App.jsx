@@ -13,7 +13,8 @@ const App = () => {
     const [mainStyles, setMainStyles] = useState({
         backgroundColor: "#A3E998",
         paddingTop: "60px",
-        paddingBottom: "80%"});
+        minHeight: "1000px",
+    });
 
     return (
         <div className="app">

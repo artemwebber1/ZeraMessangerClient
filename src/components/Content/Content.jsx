@@ -16,7 +16,7 @@ export const Content = ({setMainStyles}) => {
             }
         };
 
-        fetch(`https://localhost:7185/api/users/identity`, fetchOptions)
+        fetch(`https://localhost:7185/api/account`, fetchOptions)
         .then(res => res.json())
         .then(data => {
             setUser(data);

@@ -35,7 +35,7 @@
     margin: 0 auto;
     margin-top: 40px;
 
-    width: 700px;
+    max-width: 700px;
     background-color: #B3FFDB;
     text-wrap: wrap;
 

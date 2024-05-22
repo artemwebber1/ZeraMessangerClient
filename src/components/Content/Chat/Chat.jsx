@@ -98,9 +98,14 @@ export const Chat = ({user, setMainStyles}) => {
     return (
         <div className={styles.chat}>
             <div className={styles.chatHeader}>
-                <button onClick={closeChat}>
-                    Back
-                </button>
+                <div className={styles.chatActions}>
+                    <button onClick={closeChat}>
+                        Back
+                    </button>
+                    <button>
+                        Add member
+                    </button>
+                </div>
                 <p className={styles.chatName}>
                     {chatName}
                 </p>
