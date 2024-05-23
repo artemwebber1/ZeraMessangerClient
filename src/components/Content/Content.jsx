@@ -2,12 +2,10 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { ChatsView } from "./ChatsView/ChatsView"
 import { Profile } from './ProfileContent/Profile';
 import { Chat } from './Chat/Chat';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 
-export const Content = ({setMainStyles}) => {
-    const [user, setUser] = useState({});
-
+export const Content = () => {
     const loadUserData = () => {
         const fetchOptions = {
             method: "GET",
@@ -19,7 +17,7 @@ export const Content = ({setMainStyles}) => {
         fetch(`https://localhost:7185/api/account`, fetchOptions)
         .then(res => res.json())
         .then(data => {
-            setUser(data);
+            localStorage.setItem("user", JSON.stringify(data));
         });
     };
 
@@ -28,9 +26,9 @@ export const Content = ({setMainStyles}) => {
     return (
         <Routes>
             <Route path='/' element={<Navigate to="/chats" />} />
-            <Route path="/chats" element={<ChatsView user={user} />} />
-            <Route path="/profile" element={<Profile user={user} />} />
-            <Route path="/chats/:chatId" element={<Chat setMainStyles={setMainStyles} user={user} />} />
+            <Route path="/chats" element={<ChatsView />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/chats/:chatId" element={<Chat />} />
         </Routes>
     );
 };

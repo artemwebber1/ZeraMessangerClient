@@ -6,7 +6,7 @@ import { InputMessageField } from './InputMessageField';
 import { HubConnectionBuilder } from '@microsoft/signalr';
 
 
-export const Chat = ({user, setMainStyles}) => {
+export const Chat = () => {
     const [hub, setHub] = useState(null);
 
     const {chatId} = useParams();
@@ -24,6 +24,8 @@ export const Chat = ({user, setMainStyles}) => {
         setHub(null);
         redirect("/");
     };
+
+    const user = JSON.parse(localStorage.getItem("user"));
 
     const isConnectedToChatHub = useRef(false);
     useEffect(() => {
@@ -44,11 +46,11 @@ export const Chat = ({user, setMainStyles}) => {
                 .withAutomaticReconnect()
                 .build();
     
-            hub.on("OnMessageSent", (messageText, authorId) => {
+            hub.on("OnMessageSent", (messageText) => {
                 const message = {
-                    authorId: authorId,
+                    messageText: messageText,
+                    authorId: user.userId,
                     authorName: user.userName,
-                    messageText: messageText
                 };
     
                 setChatMessages(messages => [...messages, message]);
@@ -69,29 +71,22 @@ export const Chat = ({user, setMainStyles}) => {
     }, []);
 
     useEffect(() => {
-        if (chatMessages.length > 5){
-            setMainStyles({
-                backgroundColor: "#A3E998",
-                paddingTop: "60px",
-                paddingBottom: "10%"
-            });
-
+        if (chatMessages.length > 5)
             messagesEndRef?.current.scrollIntoView({ behavior: "smooth" });
-        }
 
-        return () => setMainStyles({
-            backgroundColor: "#A3E998",
-            paddingTop: "60px",
-            paddingBottom: "80%"
-        });
-    }, [chatMessages, setMainStyles]);
+    }, [chatMessages]);
 
     const addMessage = async () => {
         // Не добавляем сообщение в чат если оно пустое
         if (messageText === "")
             return;
 
-        await hub.invoke("AddMessageToChat", messageText.toString(), user.userId.toString(), chatId.toString());
+        await hub.invoke(
+            "AddMessageToChat", 
+            messageText.toString(),
+            user.userId?.toString(),
+            chatId.toString());
+
         setMessageText("");
     };
 
@@ -99,10 +94,10 @@ export const Chat = ({user, setMainStyles}) => {
         <div className={styles.chat}>
             <div className={styles.chatHeader}>
                 <div className={styles.chatActions}>
-                    <button onClick={closeChat}>
+                    <button onClick={closeChat} className={styles.backButton}>
                         Back
                     </button>
-                    <button>
+                    <button className={styles.addMemberButton}>
                         Add member
                     </button>
                 </div>

@@ -5,12 +5,15 @@ import { useEffect, useState } from 'react';
 import { CreateChatButton } from './CreateChatButton';
 import { AddChatMenu } from './AddChatMenu';
 
-export const ChatsView = ({user}) => {
+export const ChatsView = () => {
     const [chats, setChats] = useState([]);
 
     const [showAddChatMenu, setShowAddChatMenu] = useState(false);
 
+    const user = JSON.parse(localStorage.getItem("user"));
+
     const exitChat = async (chatToDeleteId) => {
+        console.log(user.userId);
         const fetchOptions = {
             method: "DELETE",
             headers: {
@@ -43,6 +46,8 @@ export const ChatsView = ({user}) => {
         }
 
         loadChats();
+
+        window.scrollTo({ top: "0" });
     }, []);
 
     const showChatAddMenu = () => {

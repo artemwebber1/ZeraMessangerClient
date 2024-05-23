@@ -3,11 +3,13 @@ import { UserInfo } from "./UserInfo";
 import { NavBar } from "../../NavBar";
 
 
-export const Profile = ({user}) => {
+export const Profile = () => {
     const profileStyles = {
         marginLeft: "100px",
         paddingTop: "30px"
     };
+
+    const user = JSON.parse(localStorage.getItem("user"));
 
     return (
         <>
