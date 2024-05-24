@@ -3,18 +3,20 @@ import { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Message } from './Message';
 import { InputMessageField } from './InputMessageField';
+import { AddMemberMenu } from './AddMemberMenu';
 import { HubConnectionBuilder } from '@microsoft/signalr';
 
 
 export const Chat = () => {
-    const [hub, setHub] = useState(null);
-
     const {chatId} = useParams();
-
     const [chatName, setChatName] = useState("");
     const [chatMessages, setChatMessages] = useState([]);
-
     const [messageText, setMessageText] = useState("");
+
+    const [isShowAddMemberMenu, setShowAddMemberMenu] = useState(false);
+
+    const user = JSON.parse(localStorage.getItem("user"));
+    const [hub, setHub] = useState(null);
 
     const messagesEndRef = useRef(null);
 
@@ -24,8 +26,6 @@ export const Chat = () => {
         setHub(null);
         redirect("/");
     };
-
-    const user = JSON.parse(localStorage.getItem("user"));
 
     const isConnectedToChatHub = useRef(false);
     useEffect(() => {
@@ -73,7 +73,6 @@ export const Chat = () => {
     useEffect(() => {
         if (chatMessages.length > 5)
             messagesEndRef?.current.scrollIntoView({ behavior: "smooth" });
-
     }, [chatMessages]);
 
     const addMessage = async () => {
@@ -90,6 +89,10 @@ export const Chat = () => {
         setMessageText("");
     };
 
+    const showAddMemberMenu = () => {
+        setShowAddMemberMenu(!isShowAddMemberMenu);
+    }
+
     return (
         <div className={styles.chat}>
             <div className={styles.chatHeader}>
@@ -97,10 +100,13 @@ export const Chat = () => {
                     <button onClick={closeChat} className={styles.backButton}>
                         Back
                     </button>
-                    <button className={styles.addMemberButton}>
+                    <button onClick={showAddMemberMenu} className={styles.addMemberButton}>
                         Add member
                     </button>
                 </div>
+                {
+                    isShowAddMemberMenu ? <AddMemberMenu closeFunc={showAddMemberMenu} chatId={chatId} /> : null
+                }
                 <p className={styles.chatName}>
                     {chatName}
                 </p>
