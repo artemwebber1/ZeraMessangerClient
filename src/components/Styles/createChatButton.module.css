@@ -8,7 +8,8 @@
     border-radius: 10px;
     border: 1px solid black;
     
-    width: 710px;
+    width: 90%;
+    max-width: 710px;
     
     margin-bottom: 10px;
 

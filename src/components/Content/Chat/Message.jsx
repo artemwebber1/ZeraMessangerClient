@@ -1,14 +1,14 @@
 import styles from '../../Styles/ChatStyles/chatStyles.module.css'
 
 
-export const Message = (props) => {
+export const Message = ({text, authorName, isMyMessage}) => {
     return (
-        <div className={props.isMyMessage ? styles.myMessage : styles.message}>
+        <div className={isMyMessage ? styles.myMessage : styles.message}>
             <p className={styles.messageText}>
-                {props.text}
+                {text}
             </p>
             <p className={styles.messagesAuthorName}>
-                {props.authorName}
+                {authorName}
             </p>
         </div>
     );

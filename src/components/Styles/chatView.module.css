@@ -5,8 +5,9 @@
     margin-bottom: 4px;
 
     background-color: #C6FFFC;
-    width: 85%;
-    height: auto;
+    width: 90%;
+    max-width: 710px;
+    height: 60px;
 
     display: flex;
     justify-content: space-between;
@@ -31,14 +32,16 @@
 }
 
 .exitChatBtn {
-    width: 20%;
-    height: 40px;
-
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+    line-height: 15px;
     font-size: 20px;
 
-    margin-right: 48px;
-    margin-top: 7px;
+    margin-left: 10px;
 
+    border: none;
+    border-left: 1px solid black;
     background-color: #FFE975;
 }
 

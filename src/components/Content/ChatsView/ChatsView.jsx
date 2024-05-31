@@ -5,25 +5,10 @@ import { useEffect, useState } from 'react';
 import { CreateChatButton } from './CreateChatButton';
 import { AddChatMenu } from './AddChatMenu';
 
-export const ChatsView = ({user}) => {
+export const ChatsView = () => {
     const [chats, setChats] = useState([]);
 
     const [showAddChatMenu, setShowAddChatMenu] = useState(false);
-
-    const exitChat = async (chatToDeleteId) => {
-        const fetchOptions = {
-            method: "DELETE",
-            headers: {
-                "Authorization": "Bearer " + localStorage.getItem("jwt"),
-            }
-        };
-
-        await fetch(
-            `https://localhost:7185/api/Chats/DeleteUserFromChat?userId=${user.userId}&chatId=${chatToDeleteId}`, 
-            fetchOptions);
-
-        setChats(chats.filter(chat => chat.chatId !== chatToDeleteId));
-    }
 
     useEffect(() => {
         const loadChats = async () => {
@@ -43,6 +28,8 @@ export const ChatsView = ({user}) => {
         }
 
         loadChats();
+
+        window.scrollTo({ top: "0" });
     }, []);
 
     const showChatAddMenu = () => {
@@ -75,7 +62,6 @@ export const ChatsView = ({user}) => {
                             chatName={chat.chatName}
                             membersCount={chat.membersCount} 
                             chatId={chat.chatId}
-                            exitChat={exitChat}
                             key={index} />
                     )
                 })}
