@@ -12,10 +12,6 @@ export const ChatView = ({chatName, membersCount, chatId, exitChat}) => {
                     {membersCount} members
                 </p>
             </NavLink>
-
-            <button className={styles.exitChatBtn} onClick={() => exitChat(chatId)}>
-                Exit chat
-            </button>
         </div>
     );
 };

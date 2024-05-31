@@ -24,21 +24,21 @@
     margin-right: 10px;
 }
 
-/* Back button */
-
 .chatActions {
     margin: 0;
     padding: 0;
     padding-bottom: 10px;
 }
 
-.backButton, .addMemberButton {
+.backButton, .addMemberButton, .exitChatButton {
     width: 100px;
     height: 30px;
 
     display: table-cell;
     vertical-align: middle;
 }
+
+/* Back button */
 
 .backButton {
     background-color: #B3F5AD;
@@ -119,13 +119,24 @@
     vertical-align: middle;
 }
 
+/* Exit chat button */
+.exitChatButton {
+    background-color: #FFAD72;
+    margin-left: 10px;
+}
+
+.exitChatButton:active {
+    background-color: #e19864;
+}
+
 /* Message styles */
 .messagesZone {
     padding-top: 30px;
     padding-bottom: 70px;
 }
 
-.message, .myMessage {
+
+.message, .myMessage, .eventMessage {
     margin: 0 auto;
     margin-top: 40px;
     
@@ -138,6 +149,16 @@
 
     border: 1px solid black;
     border-radius: 5px;
+}
+
+.eventMessage {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    text-align: center;
+    font-size: 25px;
+
+    background-color: transparent;
 }
 
 .myMessage {

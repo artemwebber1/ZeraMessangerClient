@@ -10,24 +10,6 @@ export const ChatsView = () => {
 
     const [showAddChatMenu, setShowAddChatMenu] = useState(false);
 
-    const user = JSON.parse(localStorage.getItem("user"));
-
-    const exitChat = async (chatToDeleteId) => {
-        console.log(user.userId);
-        const fetchOptions = {
-            method: "DELETE",
-            headers: {
-                "Authorization": "Bearer " + localStorage.getItem("jwt"),
-            }
-        };
-
-        await fetch(
-            `https://localhost:7185/api/Chats/DeleteUserFromChat?userId=${user.userId}&chatId=${chatToDeleteId}`, 
-            fetchOptions);
-
-        setChats(chats.filter(chat => chat.chatId !== chatToDeleteId));
-    }
-
     useEffect(() => {
         const loadChats = async () => {
             const fetchOptions = 
@@ -80,7 +62,6 @@ export const ChatsView = () => {
                             chatName={chat.chatName}
                             membersCount={chat.membersCount} 
                             chatId={chat.chatId}
-                            exitChat={exitChat}
                             key={index} />
                     )
                 })}

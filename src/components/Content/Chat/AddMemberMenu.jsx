@@ -1,18 +1,12 @@
 import { useState } from 'react';
 import styles from '../../Styles/ChatStyles/chatStyles.module.css'
 
-export const AddMemberMenu = ({closeFunc, chatId}) => {
-    const [memberId, setMemberId] = useState("");
+export const AddMemberMenu = ({closeFunc, chatId, chatHub}) => {
+    const [userToAddId, setUserToAddId] = useState("");
 
     const addMemberToChat = async () => {
-        const fetchOptions = {
-            method: "POST",
-            headers: {
-                "Authorization": "Bearer " + localStorage.getItem("jwt")
-            }
-        };
-
-        await fetch(`https://localhost:7185/api/Chats/AddUserToChat?userId=${memberId}&chatId=${chatId}`, fetchOptions);
+        await chatHub?.invoke("AddUserToChat", parseInt(userToAddId), parseInt(chatId));
+        closeFunc();
     };
 
     return(
@@ -27,7 +21,7 @@ export const AddMemberMenu = ({closeFunc, chatId}) => {
                     id='memberIdInput' 
                     type="text" 
                     className={styles.memberIdInput}
-                    onChange={e => setMemberId(e.target.value)} />
+                    onChange={e => setUserToAddId(e.target.value)} />
             </div>
         </div>
     );
